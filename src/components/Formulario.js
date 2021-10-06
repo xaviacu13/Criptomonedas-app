@@ -22,7 +22,16 @@ const Button = styled.input`
 
 const Formulario = () => {
 
-  const[ moneda, SelectMoneda, refreshState ] = useMoneda();
+  const MONEY = [
+    {cod: 'USD', name: 'Dolar de Estados unidos'},
+    {cod: 'MXN', name: 'Peso Mexicano'},
+    {cod: 'EUR', name: 'Euro'},
+    {cod: 'GBP', name: 'Libra Esterlina'},
+    {cod: 'ARS', name: 'Peso Argentino'},
+    {cod: 'BOB', name: 'Moneda Boliviana'},
+  ]
+
+  const[ moneda, SelectMoneda ] = useMoneda('Elija tu moneda', '', MONEY);
 
   return ( 
     <form>
