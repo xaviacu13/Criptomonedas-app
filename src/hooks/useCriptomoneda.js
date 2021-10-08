@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import styled from '@emotion/styled';
 
 const Label = styled.label`
@@ -11,7 +11,7 @@ const Label = styled.label`
   display: block;
 `;
 
-const Select = styled.select`
+const SelectCripto = styled.select`
   width: 100%;
   display: block;
   padding: 1rem;
@@ -21,22 +21,24 @@ const Select = styled.select`
   font-size: 1.3rem;
 `;
 
-const useMoneda = (money, stateInicial, options) => {
+const useCriptomoneda = (money, stateInicial, options) => {
+
+  console.log(options);
 
   const [state, refreshState] = useState (stateInicial);
 
   const Selecionar = () => (
     <>
       <Label>{money}</Label>
-      <Select
+      <SelectCripto
         onChange={ e => refreshState(e.target.value)}
         value={state}
       >
         <option value="">- Seleccione -</option>
         {options.map(op => (
-          <option key={op.cod} value={op.cod}>{op.name}</option>
+          <option key={op.CoinInfo.Id} value={op.CoinInfo.Name}>{op.CoinInfo.FullName}</option>
         ))}
-      </Select>
+      </SelectCripto>
     </>
 
   );
@@ -44,4 +46,4 @@ const useMoneda = (money, stateInicial, options) => {
   return [state, Selecionar, refreshState];
 }
  
-export default useMoneda;
+export default useCriptomoneda;
