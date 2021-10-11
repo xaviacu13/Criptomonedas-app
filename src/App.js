@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from  '@emotion/styled';
+
 import image from './cripto1.png'
 import Formulario from './components/Formulario';
 import axios from 'axios';

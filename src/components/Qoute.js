@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 const ResultDiv = styled.div`
   color: #FFF;
@@ -32,6 +33,10 @@ const Qoute = ({result}) => {
       <Paragraph> Ultima actualizacion: <span>{result.LASTUPDATE}</span> </Paragraph>
     </ResultDiv>
   );
+}
+
+Qoute.propTypes = {
+  result: PropTypes.string.isRequired,
 }
  
 export default Qoute;
