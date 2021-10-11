@@ -4,6 +4,7 @@ import image from './cripto1.png'
 import Formulario from './components/Formulario';
 import axios from 'axios';
 import Qoute from './components/Qoute';
+import Spinner from './components/Spiner';
 
 const Container = styled.div`
   max-width: 900px;
@@ -42,17 +43,25 @@ function App() {
   const [money, saveMoney] = useState('');
   const [cripto, saveCripto] = useState('');
   const [result, saveResult] = useState({});
+  const [load, saveLoad] = useState(false);
 
   useEffect(() => {
     const quoteCriptoMoney = async () => {
       if(money === '') return;
       const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cripto}&tsyms=${money}`;
       const result = await axios.get(url);
-      saveResult(result.data.DISPLAY[cripto][money]);
+      saveLoad(true);
+      setTimeout(() => {
+        saveLoad(false);
+        saveResult(result.data.DISPLAY[cripto][money]);
+
+      },4000)
+
     }
     quoteCriptoMoney();
   }, [money, cripto])
 
+  let component = (load) ? <Spinner /> : <Qoute result={result}/>
 
   return (
    <Container>
@@ -69,9 +78,7 @@ function App() {
         saveCriptomoney={saveCripto}
         saveMoney={saveMoney}
       />
-      <Qoute
-        result={result}
-      />
+      {component}
      </div>
    </Container>
   );
